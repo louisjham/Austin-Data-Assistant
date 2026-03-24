@@ -1,0 +1,5 @@
+{
+  "name": "Austin Open Data Explorer",
+  "description": "An application to explore and filter datasets from the Austin Open Data Portal.",
+  "requestFramePermissions": []
+}
