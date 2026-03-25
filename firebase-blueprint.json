@@ -1,0 +1,24 @@
+{
+  "entities": {
+    "ColumnMetadata": {
+      "title": "ColumnMetadata",
+      "description": "Crowdsourced metadata for dataset columns.",
+      "type": "object",
+      "properties": {
+        "datasetId": { "type": "string", "description": "The ID of the dataset." },
+        "columnName": { "type": "string", "description": "The original or identified column name." },
+        "suggestedName": { "type": "string", "description": "The crowdsourced name for the column." },
+        "suggestedDescription": { "type": "string", "description": "The crowdsourced description for the column." },
+        "suggestedBy": { "type": "string", "description": "The UID of the user who suggested the metadata." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Timestamp of suggestion." }
+      },
+      "required": ["datasetId", "columnName", "suggestedBy", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/columnMetadata/{suggestionId}": {
+      "schema": "ColumnMetadata",
+      "description": "Collection of crowdsourced column metadata suggestions."
+    }
+  }
+}

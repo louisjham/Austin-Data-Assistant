@@ -1,0 +1,30 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Assumed Data Model
+    // Collection: columnMetadata
+    // Document ID: auto-generated
+    // Fields:
+    //   - datasetId: string (required)
+    //   - columnName: string (required)
+    //   - suggestedName: string (optional)
+    //   - suggestedDescription: string (optional)
+    //   - suggestedBy: string (required)
+    //   - createdAt: timestamp (required)
+
+    match /columnMetadata/{suggestionId} {
+      allow read: if true; // Anyone can read suggestions
+      allow create: if isAuthenticated() && 
+        request.resource.data.datasetId is string &&
+        request.resource.data.columnName is string &&
+        request.resource.data.suggestedBy == request.auth.uid &&
+        request.resource.data.createdAt is timestamp;
+      allow update, delete: if false; // Suggestions are immutable
+    }
+  }
+}
