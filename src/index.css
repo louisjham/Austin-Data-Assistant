@@ -1,1 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
 @import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --color-deep-blue: #003366;
+  --color-black: #000000;
+}
+
+body {
+  @apply bg-black text-white font-sans;
+}
+
+@keyframes sparkle {
+  0% { color: #ffffff; }
+  50% { color: #ff00ff; }
+  100% { color: #00ffff; }
+}
+.sparkle-text {
+  animation: sparkle 3s infinite alternate;
+}
+
+.skyline-bg {
+  background: linear-gradient(to bottom, #000000 0%, #001f3f 100%);
+  background-image: linear-gradient(to bottom, #000000 0%, #001f3f 100%), 
+                    url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='50' width='20' height='50' fill='%231a1a1a'/%3E%3Crect x='25' y='30' width='20' height='70' fill='%231a1a1a'/%3E%3Crect x='50' y='60' width='20' height='40' fill='%231a1a1a'/%3E%3Crect x='75' y='40' width='25' height='60' fill='%231a1a1a'/%3E%3C/svg%3E");
+  background-size: cover, 100px 100px;
+  background-repeat: no-repeat, repeat-x;
+  background-position: center, bottom;
+}

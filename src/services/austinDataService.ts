@@ -96,8 +96,8 @@ export async function fetchDatasetMetadata(id: string): Promise<Dataset> {
 }
 
 export async function fetchDatasetData(id: string, limit: number = 1000): Promise<string> {
-  const url = `https://data.austintexas.gov/resource/${id}.csv?$limit=${limit}`;
-  console.log('Fetching URL:', url);
+  const url = `/api/proxy-csv?id=${id}&limit=${limit}`;
+  console.log('Fetching URL via proxy:', url);
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 second timeout
 
